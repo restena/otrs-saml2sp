@@ -25,7 +25,7 @@ URI::Escape;
   
 ### Notes on configuration:
 
-  In order to display a "Login via SAML" (mandatory) button you have to include the html following code into the Login.tt template file, below or above the login form
+  In order to display a "Login via SAML" (mandatory) button you have to include the html following code into the Login.tt template file, below or above the login form Kernel/Output/HTML/Templates/Standard/Login.tt
   ```html
   <!-- Add the sso login button -->
   <div class="Content" style="text-align: center; display: block; height: 40px; padding-top: 20px; padding-bottom: 0; vertical-align: bottom; line-height: 40px;">
