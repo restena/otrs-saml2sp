@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otrs_package version="1.0">
+	<Name>SAML2SP</Name>
+	<Version>0.0.2</Version>
+	<Framework>6.x.x</Framework>
+	<Vendor>Fondation Restena</Vendor>
+	<URL>https://www.restena.lu/</URL>
+	<License>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007</License>
+	<ChangeLog Version="0.0.2" Date="2024-05-16">Detect algorithm to validate signature</ChangeLog>
+	<Description Lang="en">SAML2 Service Provider for agents authentication.</Description>
+	<Filelist>
+		<File Location="Kernel/System/Auth/SAML2SP.pm" Permission="644"></File>
+		<File Location="Kernel/System/Auth/SAML2SP/AuthRequest.pm" Permission="644"></File>
+		<File Location="Kernel/System/Auth/SAML2SP/Config.pm" Permission="644"></File>
+		<File Location="Kernel/System/Auth/SAML2SP/Response.pm" Permission="644"></File>
+	</Filelist>
+</otrs_package>
