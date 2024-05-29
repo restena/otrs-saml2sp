@@ -22,7 +22,7 @@ use Digest::SHA qw(sha1_base64 sha256_base64 sha512_base64);
 use Crypt::OpenSSL::RSA;
 use Crypt::OpenSSL::X509;
 use Switch;
-
+use utf8;
 
 sub new{
 	my $class = shift;
@@ -49,6 +49,7 @@ sub decode{
 	my $self = shift;
 	
 	$self->{xml_as_string} = decode_base64($self->{raw_response});
+	utf8::decode($self->{xml_as_string});
 	
 	my $parser = XML::LibXML->new();
 	$self->{xml_as_dom} = $parser->parse_string($self->{xml_as_string});
@@ -294,6 +295,8 @@ sub processTransforms(){
 sub calculateDigest(){
 	my $self = shift;
 	my ( $digestAlgorithm, $data ) = @_;
+	
+	utf8::encode($data);
 	
 	if($digestAlgorithm eq "http://www.w3.org/2000/09/xmldsig#sha1"){
 		return sha1_base64($data);
