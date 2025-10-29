@@ -370,7 +370,10 @@ sub verify_signature(){
 sub validateNumAssertions(){
 	my $self = shift;
 		
-	my @assertionNodes = $self->{xml_as_dom}->getElementsByTagName('saml:Assertion');
+	my $xpath = XML::LibXML::XPathContext->new($self->{xml_as_dom});
+	$xpath->registerNs("samlp", "urn:oasis:names:tc:SAML:2.0:protocol");
+	$xpath->registerNs("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+	my @assertionNodes = $xpath->findnodes('/samlp:Response/saml:Assertion');
 	return (scalar(@assertionNodes) == 1);
 }
 
@@ -378,7 +381,10 @@ sub validateNumAssertions(){
 sub validateTimestamps(){
 	my $self = shift;
 		
-	my @timestampNodes = $self->{xml_as_dom}->getElementsByTagName('saml:Conditions');
+	my $xpath = XML::LibXML::XPathContext->new($self->{xml_as_dom});
+	$xpath->registerNs("samlp", "urn:oasis:names:tc:SAML:2.0:protocol");
+	$xpath->registerNs("saml", "urn:oasis:names:tc:SAML:2.0:assertion");
+	my @timestampNodes = $xpath->findnodes('/samlp:Response/saml:Assertion/saml:Conditions');
 	for(my $i=0; $i < scalar(@timestampNodes) ; $i++){
 		my @attr = $timestampNodes[$i]->attributes();
 		
