@@ -51,8 +51,8 @@ sub create{
 	my $base64_request = encode_base64($deflated_request);
 	
 	my $encoded_request = uri_escape($base64_request);
-	
-    return $self->{settings}->{idp_sso_target_url}."?SAMLRequest=".$encoded_request;
+	my $sep = index($self->{settings}->{idp_sso_target_url}, '?') == -1 ? '?' : '&';
+    return $self->{settings}->{idp_sso_target_url}.$sep."SAMLRequest=".$encoded_request;
 }
 
 
